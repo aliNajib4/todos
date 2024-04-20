@@ -3,8 +3,37 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply p-96;
-    background-color: #f9fa00;
+  html {
+    font-family: "Josefin Sans", sans-serif;
   }
+
+  body {
+    @apply bg-light dark:bg-mVD;
+  }
+
+  .active {
+    @apply text-brightBlue;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
