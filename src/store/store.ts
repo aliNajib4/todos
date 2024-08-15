@@ -1,4 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import todos from "./todos/todosSlice";
+import theme from "./theme/themeSlice";
 import {
   persistStore,
   persistReducer,
@@ -14,10 +16,10 @@ import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "root",
   storage,
-  whiteList: [],
+  whiteList: [theme],
 };
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({ todos, theme });
 
 const store = configureStore({
   reducer: persistReducer(persistConfig, rootReducer),
