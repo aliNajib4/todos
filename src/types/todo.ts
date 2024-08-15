@@ -2,6 +2,6 @@ type TTodo = {
   todo: string;
   active: boolean;
   createdAt: number;
-  id: string;
+  id?: string;
 };
 export default TTodo;
