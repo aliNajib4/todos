@@ -1,7 +1,7 @@
-import Todos from "./pages/Todos.tsx";
 import { Header } from "./components";
 import { useAppSelector } from "./store/hooks";
 import "./App.css";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   const theme = useAppSelector((state) => state.theme.theme);
@@ -15,7 +15,7 @@ const App = () => {
       <div className="App container flex h-screen flex-col justify-center bg-contain bg-no-repeat font-josefin lg:w-[700px] ">
         <Header theme={theme} />
         <main className="flex flex-col gap-y-4">
-          <Todos />
+          <Outlet />
         </main>
       </div>
     </div>
