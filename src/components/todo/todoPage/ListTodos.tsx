@@ -34,6 +34,7 @@ const ListTodo = ({
               handleActive={handleActive}
               handleDel={handleDel}
               handleDate={handleDate}
+              key={todo.id}
             />
           ))
         )}

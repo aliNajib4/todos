@@ -36,6 +36,8 @@ export default {
       lightHD: "hsl(236, 33%, 92%)", // (hover)
       darkD: "hsl(234, 11%, 52%)",
       vD: "hsl(233, 14%, 35%)",
+      transparent: "transparent",
+      error: "red",
     },
     fontFamily: {
       //font-family: "Josefin Sans", sans-serif;
