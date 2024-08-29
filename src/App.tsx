@@ -1,10 +1,33 @@
 import { Header } from "./components";
-import { useAppSelector } from "./store/hooks";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
 import "./App.css";
 import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/config";
+import { setUser } from "./store/auth/authSlice";
 
 const App = () => {
   const theme = useAppSelector((state) => state.theme.theme);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(
+          setUser({
+            email: user.email,
+            id: user.uid,
+          }),
+        );
+      } else {
+        dispatch(setUser(null));
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [dispatch]);
   return (
     <div
       className={
