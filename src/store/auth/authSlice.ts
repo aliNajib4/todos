@@ -69,6 +69,7 @@ const authSlice = createSlice({
       })
       .addCase(actSignout.fulfilled, (state) => {
         state.loading = "succeeded";
+        state.user = null;
       })
       .addCase(actSignout.rejected, (state, action) => {
         state.loading = "failed";
