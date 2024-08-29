@@ -3,16 +3,20 @@
 @tailwind utilities;
 
 @layer base {
-
-  input{
-    @apply  ring-1 min-w-10  rounded-lg bg-MLight px-2 text-base text-dark focus:outline-none focus:ring-mVD dark:bg-vDesaturatedD dark:text-lightHD
+  input {
+    @apply min-w-10 rounded-lg  bg-MLight px-2 text-base text-dark ring-1 focus:outline-none focus:ring-mVD dark:bg-vDesaturatedD dark:text-lightHD;
   }
+
   html {
     font-family: "Josefin Sans", sans-serif;
   }
 
   body {
-    @apply bg-light dark:bg-mVD;
+    @apply min-h-screen bg-light dark:bg-mVD;
+  }
+
+  #root {
+    @apply min-h-screen;
   }
 
   .active {
@@ -20,7 +24,7 @@
   }
 
   .button {
-    @apply rounded-full border p-2 text-xl capitalize text-MLight hover:text-light
+    @apply rounded-full border p-2 text-xl capitalize text-MLight hover:text-light;
   }
 }
 

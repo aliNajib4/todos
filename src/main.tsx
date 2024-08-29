@@ -11,11 +11,13 @@ import Todos from "./pages/Todos.tsx";
 import Signin from "./pages/Signin.tsx";
 import Signup from "./pages/Signup.tsx";
 import ProtectPage from "./components/ProtectPage.tsx";
+import NotFound from "./pages/NotFound.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
