@@ -3,5 +3,6 @@ type TTodo = {
   active: boolean;
   createdAt: number;
   id?: string;
+  userId?: string;
 };
 export default TTodo;

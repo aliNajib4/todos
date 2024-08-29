@@ -15,6 +15,7 @@ const Todos = () => {
   const { todosFullInfo, loading, error } = useAppSelector(
     (state) => state.todos,
   );
+  const user = useAppSelector((state) => state.auth.user);
   const [status, setStatus] = useState<"all" | "active" | "completed">("all");
 
   const handleDate = useCallback((ms: number) => {
@@ -45,11 +46,16 @@ const Todos = () => {
 
       if (valueClean && !repeat) {
         dispatch(
-          actAddTodo({ todo: valueClean, active: true, createdAt: Date.now() }),
+          actAddTodo({
+            todo: valueClean,
+            active: true,
+            createdAt: Date.now(),
+            userId: user?.id,
+          }),
         );
       }
     },
-    [dispatch, todosFullInfo],
+    [dispatch, todosFullInfo, user?.id],
   );
   const handleDel = useCallback(
     (id: string) => {
