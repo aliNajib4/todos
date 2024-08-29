@@ -1,8 +1,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { actSignUp, cleanUp } from "../store/auth/authSlice";
+import { useEffect } from "react";
 
 type TData = {
-  name: string;
   email: string;
   password: string;
 };
@@ -12,9 +14,22 @@ const Signup = () => {
     mode: "onSubmit",
     reValidateMode: "onSubmit",
   });
+  const dispatch = useAppDispatch()
+  const { loading, error } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate()
 
-  const onSubmit: SubmitHandler<TData> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<TData> = (data) => {
+    dispatch(actSignUp(data))
+          if (loading === "succeeded") {
+            navigate("/");
+          }
+  };
 
+  useEffect(()=>{
+    return ()=>{
+      dispatch(cleanUp())
+    }
+  }, [dispatch])
   return (
     <div className="flex h-[600px] flex-col rounded-xl bg-MLight p-5 dark:bg-dark dark:text-MLight">
       <h2 className="text-3xl font-bold">Signup</h2>
@@ -23,28 +38,6 @@ const Signup = () => {
         className="flex flex-grow flex-col justify-between gap-10 pl-3 pt-3 "
       >
         <div className="flex flex-col gap-10">
-          <div className="flex flex-col gap-5">
-            <div className="flex gap-5">
-              <label htmlFor="name" className="text-2xl">
-                name:
-              </label>
-              <input
-                type="text"
-                id="name"
-                {...register("name", {
-                  required: "Name is required",
-                  minLength: {
-                    value: 3,
-                    message: "Name must be at least 3 characters",
-                  },
-                })}
-                className="flex-grow text-2xl dark:bg-mVD"
-              />
-            </div>
-            <p className="text-xl capitalize text-error">
-              {formState.errors.name?.message}
-            </p>
-          </div>
           <div className="flex flex-col gap-5 ">
             <div className="flex gap-5">
               <label htmlFor="email" className="text-2xl">
@@ -60,7 +53,8 @@ const Signup = () => {
                     message: "Invalid email address",
                   },
                 })}
-                className="flex-grow text-2xl dark:bg-mVD"
+                className="flex-grow text-2xl disabled:text-mVD dark:bg-mVD"
+                disabled={loading === "pending" || loading === "succeeded"}
               />
             </div>
             <p className="text-xl capitalize text-error">
@@ -82,7 +76,8 @@ const Signup = () => {
                     message: "Password must be at least 8 characters",
                   },
                 })}
-                className="flex-grow text-2xl dark:bg-mVD"
+                className="flex-grow text-2xl disabled:text-mVD dark:bg-mVD"
+                disabled={loading === "pending" || loading === "succeeded"}
               />
             </div>
             <p className="text-xl capitalize text-error">
@@ -90,11 +85,13 @@ const Signup = () => {
             </p>
           </div>
         </div>
+        {loading === "failed" && <span>{error}asdasdasda</span>}
         <button
           type="submit"
-          className="button mt-10 text-darkD hover:text-mVD"
+          className="button mt-10 text-darkD hover:text-mVD disabled:text-mVD"
+          disabled={loading === "pending" || loading === "succeeded"}
         >
-          sign up
+          {loading === "pending" ? "loading..." : "sign up"}
         </button>
       </form>
       <p className="mt-5 text-center text-lg">

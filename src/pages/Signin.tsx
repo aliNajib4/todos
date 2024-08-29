@@ -1,5 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { actSignIn, cleanUp } from "../store/auth/authSlice";
+import { useEffect } from "react";
 
 type TData = {
   email: string;
@@ -11,8 +14,22 @@ const Signin = () => {
     mode: "onSubmit",
     reValidateMode: "onSubmit",
   });
+  const dispatch = useAppDispatch();
+  const { loading, error } = useAppSelector((state) => state.auth);
 
-  const onSubmit: SubmitHandler<TData> = (data) => console.log(data);
+  const navigate = useNavigate()
+
+  const onSubmit: SubmitHandler<TData> = (data) => {
+    dispatch(actSignIn(data)).unwrap().then(()=>{
+      if(loading === "succeeded"){
+        navigate("/")
+      }
+    });
+  };
+
+  useEffect(()=>{
+    return ()=>{dispatch(cleanUp())}
+  }, [dispatch])
 
   return (
     <div className="flex h-[500px] flex-col rounded-xl bg-MLight p-5 dark:bg-dark dark:text-MLight">
@@ -30,7 +47,8 @@ const Signin = () => {
               type="text"
               id="email"
               {...register("email")}
-              className="flex-grow text-2xl dark:bg-mVD"
+              className="flex-grow text-2xl disabled:text-mVD dark:bg-mVD"
+              disabled={loading === "pending" || loading === "succeeded"}
             />
           </div>
           <div className="flex gap-5">
@@ -41,15 +59,18 @@ const Signin = () => {
               type="password"
               id="password"
               {...register("password")}
-              className="flex-grow text-2xl dark:bg-mVD"
+              className="flex-grow text-2xl disabled:text-mVD dark:bg-mVD"
+              disabled={loading === "pending" || loading === "succeeded"}
             />
           </div>
         </div>
+        {loading === "failed" && <span>{error}asdasdasda</span>}
         <button
           type="submit"
-          className="button mt-10 text-darkD hover:text-mVD"
+          className="button mt-10 text-darkD hover:text-mVD disabled:text-mVD"
+          disabled={loading === "pending" || loading === "succeeded"}
         >
-          sign in
+          {loading === "pending" ? "loading..." : "sign in"}
         </button>
       </form>
       <p className="mt-5 text-center text-lg">
