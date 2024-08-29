@@ -43,7 +43,7 @@ const authSlice = createSlice({
       })
       .addCase(actSignUp.rejected, (state, action) => {
         state.loading = "failed";
-        state.error = action.error.name ?? "";
+        state.error = action.error.message ?? "";
       });
 
     // sign in
@@ -57,7 +57,8 @@ const authSlice = createSlice({
       })
       .addCase(actSignIn.rejected, (state, action) => {
         state.loading = "failed";
-        state.error = action.error.name ?? "";
+        state.error = action.error.message ?? "";
+        console.log(action);
       });
 
     // sign out
@@ -71,7 +72,7 @@ const authSlice = createSlice({
       })
       .addCase(actSignout.rejected, (state, action) => {
         state.loading = "failed";
-        state.error = action.error.name ?? "";
+        state.error = action.error.message ?? "";
       });
   },
 });

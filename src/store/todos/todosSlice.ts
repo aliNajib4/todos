@@ -45,7 +45,7 @@ const todosSlice = createSlice({
       })
       .addCase(actGetAllTodos.rejected, (state, action) => {
         state.loading = "failed";
-        state.error = (action.error.message ?? "") as string;
+        state.error = action.error.message ?? "";
       });
     //add todo
     builder
@@ -55,12 +55,12 @@ const todosSlice = createSlice({
       })
       .addCase(actAddTodo.fulfilled, (state, action) => {
         state.loading = "succeeded";
-        state.todos = [...state.todos, action.payload.id];
+        state.todos = [...state.todos, action.payload.id ?? ""];
         state.todosFullInfo = [...state.todosFullInfo, action.payload];
       })
       .addCase(actAddTodo.rejected, (state, action) => {
         state.loading = "failed";
-        state.error = (action.error.message ?? "") as string;
+        state.error = action.error.message ?? "";
       });
     //remove todo
     builder
@@ -77,7 +77,7 @@ const todosSlice = createSlice({
       })
       .addCase(actRemoveTodo.rejected, (state, action) => {
         state.loading = "failed";
-        state.error = (action.error.message ?? "") as string;
+        state.error = action.error.message ?? "";
       });
     //toggle active todo
     builder
@@ -96,7 +96,7 @@ const todosSlice = createSlice({
       })
       .addCase(actToggleActiveTodo.rejected, (state, action) => {
         state.loading = "failed";
-        state.error = (action.error.message ?? "") as string;
+        state.error = action.error.message ?? "";
       });
     //clear completed todo
     builder
@@ -113,7 +113,7 @@ const todosSlice = createSlice({
       })
       .addCase(actClearCompleted.rejected, (state, action) => {
         state.loading = "failed";
-        state.error = (action.error.message ?? "") as string;
+        state.error = action.error.message ?? "";
       });
   },
 });
