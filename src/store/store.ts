@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import todos from "./todos/todosSlice";
 import theme from "./theme/themeSlice";
+import auth from "./auth/authSlice";
 import {
   persistStore,
   persistReducer,
@@ -19,7 +20,7 @@ const persistConfig = {
   whiteList: [theme],
 };
 
-const rootReducer = combineReducers({ todos, theme });
+const rootReducer = combineReducers({ todos, theme, auth });
 
 const store = configureStore({
   reducer: persistReducer(persistConfig, rootReducer),
