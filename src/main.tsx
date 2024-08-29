@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Todos from "./pages/Todos.tsx";
 import Signin from "./pages/Signin.tsx";
 import Signup from "./pages/Signup.tsx";
+import ProtectPage from "./components/ProtectPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,15 +20,27 @@ const router = createBrowserRouter([
       {
         index: true,
         path: "/",
-        element: <Todos />,
+        element: (
+          <ProtectPage isUser={true}>
+            <Todos />
+          </ProtectPage>
+        ),
       },
       {
         path: "/signin",
-        element: <Signin />,
+        element: (
+          <ProtectPage isUser={false}>
+            <Signin />
+          </ProtectPage>
+        ),
       },
       {
         path: "/signup",
-        element: <Signup />,
+        element: (
+          <ProtectPage isUser={false}>
+            <Signup />
+          </ProtectPage>
+        ),
       },
     ],
   },
