@@ -4,7 +4,6 @@ import SingleTodo from "./SingleTodo";
 type TProps = {
   todosFullInfo?: TTodo[];
   loading: TLoading;
-  error: string | null;
   handleActive: (id: string) => void;
   handleDel: (id: string) => void;
   handleClearCompleted: () => void;
@@ -14,38 +13,39 @@ type TProps = {
 const ListTodo = ({
   todosFullInfo,
   loading,
-  error,
   handleActive,
   handleDel,
   handleClearCompleted,
   handleDate,
 }: TProps) => {
   return (
-    <div className="rounded-lg bg-MLight dark:bg-vDesaturatedD ">
-      <ul className="h-[328px] divide-y divide-vDark overflow-y-auto dark:divide-vD">
+    <div className="rounded-lg bg-mainBgLight dark:bg-mainBgDark">
+      <div className="h-[328px]">
         {loading === "pending" ? (
-          <p>Loading...</p>
-        ) : loading === "failed" ? (
-          <p>{error}</p>
+          <p className="flex h-full w-full items-center justify-center text-textTodoLight dark:text-textTodoDark">
+            Loading...
+          </p>
         ) : (
-          todosFullInfo?.map((todo) => (
-            <SingleTodo
-              {...todo}
-              handleActive={handleActive}
-              handleDel={handleDel}
-              handleDate={handleDate}
-              key={todo.id}
-            />
-          ))
+          <ul className="h-full divide-y divide-notActiveLight overflow-y-auto dark:divide-notActiveDark">
+            {todosFullInfo?.map((todo) => (
+              <SingleTodo
+                {...todo}
+                handleActive={handleActive}
+                handleDel={handleDel}
+                handleDate={handleDate}
+                key={todo.id}
+              />
+            ))}
+          </ul>
         )}
-      </ul>
-      <div className="flex select-none items-center  justify-between border-t border-t-dark p-4 text-sm text-vDark dark:border-t-vD dark:text-lightD">
-        <span className="hover:text-lightD">
+      </div>
+      <div className="flex select-none items-center  justify-between border-t border-t-notActiveLight p-4  text-sm text-textTodoLight dark:border-t-notActiveDark dark:text-textTodoDark">
+        <span className="hover:text-hoverLight dark:hover:text-hoverDark">
           {todosFullInfo?.length} items left
         </span>
         <button
           onClick={handleClearCompleted}
-          className="dark:hover:text-lightHD"
+          className="hover:text-hoverLight dark:hover:text-hoverDark"
         >
           Clear Completed
         </button>

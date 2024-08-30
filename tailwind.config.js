@@ -8,36 +8,34 @@ export default {
         base: "18px",
       },
       backgroundImage: {
-        mBg: "url('./assets/images/bg-mobile-light.jpg')",
-        mBgD: "url('./assets/images/bg-mobile-dark.jpg')",
-        bg: "url('./assets/images/bg-desktop-light.jpg')",
-        bgD: "url('./assets/images/bg-desktop-dark.jpg')",
         active:
-          "linear-gradient(135deg, rgba(87,221,255,1) 0%, rgba(192,88,243,1) 50%)",
+          "linear-gradient(135deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 50%)",
       },
       container: {
         center: true,
         padding: "2rem",
       },
-    },
-    colors: {
-      brightBlue: "hsl(220, 98%, 61%)",
-      checkBackground1: "hsl(192, 100%, 67%)",
-      checkBackground2: "hsl(280, 87%, 65%)",
+      colors: {
+        active: "hsl(220, 98%, 61%)",
 
-      MLight: "hsl(0, 0%, 98%)",
-      light: "hsl(233, 11%, 84%)",
-      vDark: "hsl(236, 9%, 61%)",
-      dark: "hsl(235, 19%, 35%)",
+        bgLight: "hsl(0, 0%, 98%)",
+        bgDark: "hsl(235, 21%, 11%)",
 
-      mVD: "hsl(235, 21%, 11%)",
-      vDesaturatedD: "hsl(235, 24%, 19%)",
-      lightD: "hsl(234, 39%, 85%)",
-      lightHD: "hsl(236, 33%, 92%)", // (hover)
-      darkD: "hsl(234, 11%, 52%)",
-      vD: "hsl(233, 14%, 35%)",
-      transparent: "transparent",
-      error: "red",
+        mainBgLight: "hsl(0, 0%, 100%)",
+        mainBgDark: "hsl(235, 24%, 19%)",
+
+        textInputLight: "hsl(236, 9%, 61%)",
+        textInputDark: "hsl(234, 11%, 52%)",
+
+        notActiveLight: "hsl(233, 11%, 84%)",
+        notActiveDark: "hsl(235, 19%, 35%)",
+
+        textTodoLight: "hsl(233, 14%, 35%)",
+        textTodoDark: "hsl(234, 39%, 85%)",
+
+        hoverLight: "hsl(235, 10%, 40%)",
+        hoverDark: "hsl(236, 33%, 92%)",
+      },
     },
     fontFamily: {
       //font-family: "Josefin Sans", sans-serif;
@@ -46,3 +44,24 @@ export default {
   },
   plugins: [],
 };
+
+/*
+    colors: {
+      brightBlue: "hsl(220, 98%, 61%)",
+
+      MLight: "hsl(0, 0%, 98%)",
+      mVD: "hsl(235, 21%, 11%)",
+
+      light: "hsl(233, 11%, 84%)",
+      vDark: "hsl(236, 9%, 61%)",
+      dark: "hsl(235, 19%, 35%)",
+
+      vDesaturatedD: "hsl(235, 24%, 19%)",
+      lightD: "hsl(234, 39%, 85%)",
+      lightHD: "hsl(236, 33%, 92%)", // (hover)
+      darkD: "hsl(234, 11%, 52%)",
+      vD: "hsl(233, 14%, 35%)",
+      transparent: "transparent",
+      error: "red",
+    },
+*/

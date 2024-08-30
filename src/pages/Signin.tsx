@@ -17,22 +17,26 @@ const Signin = () => {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.auth);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<TData> = (data) => {
-    dispatch(actSignIn(data)).unwrap().then(()=>{
-      if(loading === "succeeded"){
-        navigate("/")
-      }
-    });
+    dispatch(actSignIn(data))
+      .unwrap()
+      .then(() => {
+        if (loading === "succeeded") {
+          navigate("/");
+        }
+      });
   };
 
-  useEffect(()=>{
-    return ()=>{dispatch(cleanUp())}
-  }, [dispatch])
+  useEffect(() => {
+    return () => {
+      dispatch(cleanUp());
+    };
+  }, [dispatch]);
 
   return (
-    <div className="flex h-[500px] flex-col rounded-xl bg-MLight p-5 dark:bg-dark dark:text-MLight">
+    <div className="flex h-[600px] flex-col rounded-xl bg-mainBgLight p-5 text-textTodoLight dark:bg-mainBgDark dark:text-textTodoDark">
       <h2 className="text-3xl font-bold">Signin</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -47,7 +51,7 @@ const Signin = () => {
               type="text"
               id="email"
               {...register("email")}
-              className="flex-grow text-2xl disabled:text-mVD dark:bg-mVD"
+              className="flex-grow text-2xl disabled:text-notActiveLight dark:disabled:text-notActiveDark"
               disabled={loading === "pending" || loading === "succeeded"}
             />
           </div>
@@ -59,15 +63,15 @@ const Signin = () => {
               type="password"
               id="password"
               {...register("password")}
-              className="flex-grow text-2xl disabled:text-mVD dark:bg-mVD"
+              className="flex-grow text-2xl disabled:text-notActiveLight dark:disabled:text-notActiveDark"
               disabled={loading === "pending" || loading === "succeeded"}
             />
           </div>
         </div>
-        {loading === "failed" && <span>{error}asdasdasda</span>}
+        {loading === "failed" && <span>{error}</span>}
         <button
           type="submit"
-          className="button mt-10 text-darkD hover:text-mVD disabled:text-mVD"
+          className="mx-auto mt-10 w-fit rounded-full border px-5 py-2 text-textTodoLight hover:text-hoverLight disabled:text-notActiveLight dark:text-textTodoDark dark:hover:text-hoverDark dark:disabled:text-notActiveDark"
           disabled={loading === "pending" || loading === "succeeded"}
         >
           {loading === "pending" ? "loading..." : "sign in"}
@@ -75,7 +79,7 @@ const Signin = () => {
       </form>
       <p className="mt-5 text-center text-lg">
         create account
-        <Link to="/signup" className="ml-2 font-bold text-brightBlue">
+        <Link to="/signup" className="ml-2 font-bold text-active">
           here
         </Link>
       </p>

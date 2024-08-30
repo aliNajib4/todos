@@ -12,9 +12,7 @@ import { TTodo } from "../types";
 
 const Todos = () => {
   const dispatch = useAppDispatch();
-  const { todosFullInfo, loading, error } = useAppSelector(
-    (state) => state.todos,
-  );
+  const { todosFullInfo, loading } = useAppSelector((state) => state.todos);
   const user = useAppSelector((state) => state.auth.user);
   const [status, setStatus] = useState<"all" | "active" | "completed">("all");
 
@@ -80,18 +78,21 @@ const Todos = () => {
   }, [dispatch]);
   return (
     <>
-      <AddTodo handleAdd={handleAdd} />
+      <AddTodo handleAdd={handleAdd} loading={loading} />
       <ListTodos
         todosFullInfo={renderData.length ? (renderData as TTodo[]) : []}
         handleDel={handleDel}
-        error={error}
         loading={loading}
         handleActive={handleActive}
         handleClearCompleted={handleClearCompleted}
         handleDate={handleDate}
       />
-      <FilterTodos handleStatus={handleStatus} />
-      <span className="select-none  p-4 text-center font-bold text-vDark line-through dark:text-vD">
+      <FilterTodos
+        handleStatus={handleStatus}
+        loading={loading}
+        status={status}
+      />
+      <span className="select-none  p-4 text-center font-normal text-notActiveLight line-through dark:text-notActiveDark">
         Drag and drop to reorder list
       </span>
     </>

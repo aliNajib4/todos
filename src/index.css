@@ -4,7 +4,7 @@
 
 @layer base {
   input {
-    @apply min-w-10 rounded-lg  bg-MLight px-2 text-base text-dark ring-1 focus:outline-none focus:ring-mVD dark:bg-vDesaturatedD dark:text-lightHD;
+    @apply min-w-10 rounded-lg  bg-mainBgLight px-2 text-base text-textTodoLight ring-1 focus:outline-none focus:ring-active dark:bg-mainBgDark dark:text-textTodoDark;
   }
 
   html {
@@ -12,7 +12,7 @@
   }
 
   body {
-    @apply min-h-screen bg-light dark:bg-mVD;
+    @apply min-h-screen bg-bgLight dark:bg-bgDark;
   }
 
   #root {
@@ -20,11 +20,7 @@
   }
 
   .active {
-    @apply text-brightBlue;
-  }
-
-  .button {
-    @apply rounded-full border p-2 text-xl capitalize text-MLight hover:text-light;
+    @apply text-active;
   }
 }
 

@@ -23,14 +23,14 @@ const SingleTodo = ({
 }: TProps) => {
   return (
     <li
-      className="flex items-center justify-between p-3 text-[13px] text-dark dark:text-lightD dark:hover:text-lightHD"
+      className="flex items-center justify-between p-3 text-[13px] text-textTodoLight hover:text-hoverLight dark:text-textTodoDark  dark:hover:text-hoverDark"
       key={id}
     >
       <div className="flex items-center gap-x-4">
-        <div className="h-[22px] w-[22px] select-none rounded-full bg-light p-px hover:bg-active dark:bg-darkD">
+        <div className="h-[22px] w-[22px] select-none rounded-full bg-notActiveLight p-px hover:bg-active dark:bg-notActiveDark">
           <button
             className={
-              "flex h-5 w-5  items-center justify-center rounded-full bg-MLight dark:bg-vDesaturatedD " +
+              "flex h-5 w-5  items-center justify-center rounded-full bg-bgLight dark:bg-bgDark " +
               (!active ? "bg-active" : "")
             }
             onClick={() => (id ? handleActive(id) : null)}
@@ -39,9 +39,15 @@ const SingleTodo = ({
           </button>
         </div>
         <p
-          className={"font-bold" + (!active ? " text-vDark line-through" : "")}
+          className={
+            "font-bold" +
+            (!active
+              ? " text-notActiveLight line-through hover:text-notActiveLight dark:text-notActiveDark"
+              : "")
+          }
+          title={todo}
         >
-          {todo}
+          {todo.length > 25 ? todo.slice(0, 17) + "..." : todo}
         </p>
       </div>
       <div className="flex items-center gap-x-4">

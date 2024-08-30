@@ -14,24 +14,24 @@ const Signup = () => {
     mode: "onSubmit",
     reValidateMode: "onSubmit",
   });
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.auth);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<TData> = (data) => {
-    dispatch(actSignUp(data))
-          if (loading === "succeeded") {
-            navigate("/");
-          }
+    dispatch(actSignUp(data));
+    if (loading === "succeeded") {
+      navigate("/");
+    }
   };
 
-  useEffect(()=>{
-    return ()=>{
-      dispatch(cleanUp())
-    }
-  }, [dispatch])
+  useEffect(() => {
+    return () => {
+      dispatch(cleanUp());
+    };
+  }, [dispatch]);
   return (
-    <div className="flex h-[600px] flex-col rounded-xl bg-MLight p-5 dark:bg-dark dark:text-MLight">
+    <div className="flex h-[600px] flex-col rounded-xl bg-mainBgLight p-5 text-textTodoLight dark:bg-mainBgDark dark:text-textTodoDark">
       <h2 className="text-3xl font-bold">Signup</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -53,11 +53,11 @@ const Signup = () => {
                     message: "Invalid email address",
                   },
                 })}
-                className="flex-grow text-2xl disabled:text-mVD dark:bg-mVD"
+                className="flex-grow text-2xl disabled:text-notActiveLight dark:disabled:text-notActiveDark"
                 disabled={loading === "pending" || loading === "succeeded"}
               />
             </div>
-            <p className="text-xl capitalize text-error">
+            <p className="text-xl capitalize text-red-400">
               {formState.errors.email?.message}
             </p>
           </div>
@@ -76,19 +76,19 @@ const Signup = () => {
                     message: "Password must be at least 8 characters",
                   },
                 })}
-                className="flex-grow text-2xl disabled:text-mVD dark:bg-mVD"
+                className="flex-grow text-2xl disabled:text-notActiveLight dark:disabled:text-notActiveDark"
                 disabled={loading === "pending" || loading === "succeeded"}
               />
             </div>
-            <p className="text-xl capitalize text-error">
+            <p className="text-xl capitalize text-red-400">
               {formState.errors.password?.message}
             </p>
           </div>
         </div>
-        {loading === "failed" && <span>{error}asdasdasda</span>}
+        {loading === "failed" && <span>{error}</span>}
         <button
           type="submit"
-          className="button mt-10 text-darkD hover:text-mVD disabled:text-mVD"
+          className="mx-auto mt-10 w-fit rounded-full border px-5 py-2 text-textTodoLight hover:text-hoverLight disabled:text-notActiveLight dark:text-textTodoDark dark:hover:text-hoverDark dark:disabled:text-notActiveDark"
           disabled={loading === "pending" || loading === "succeeded"}
         >
           {loading === "pending" ? "loading..." : "sign up"}
@@ -96,7 +96,7 @@ const Signup = () => {
       </form>
       <p className="mt-5 text-center text-lg">
         signin
-        <Link to="/signin" className="ml-2 font-bold text-brightBlue">
+        <Link to="/signin" className="ml-2 font-bold text-active">
           here
         </Link>
       </p>

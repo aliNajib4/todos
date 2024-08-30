@@ -31,11 +31,11 @@ const App = () => {
   return (
     <div
       className={
-        "h-screen w-screen bg-light bg-mBg bg-contain bg-no-repeat lg:bg-bg dark:bg-mVD dark:bg-mBgD lg:dark:bg-bgD " +
+        "flex h-screen w-screen flex-col justify-center bg-bgLight dark:bg-bgDark " +
         (theme === "dark" ? "dark" : "")
       }
     >
-      <div className="App container flex h-screen flex-col justify-center bg-contain bg-no-repeat font-josefin lg:w-[700px] ">
+      <div className="App container h-[700px] lg:w-[700px] ">
         <Header theme={theme} />
         <main className="flex flex-col gap-y-4">
           <Outlet />
