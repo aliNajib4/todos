@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        path: "/",
+        path: "/todos",
         element: (
           <ProtectPage isUser={true}>
             <Todos />
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/signin",
+        path: "/todos/signin",
         element: (
           <ProtectPage isUser={false}>
             <Signin />
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/signup",
+        path: "/todos/signup",
         element: (
           <ProtectPage isUser={false}>
             <Signup />
