@@ -40,18 +40,18 @@ const SingleTodo = ({
         </div>
         <p
           className={
-            "font-bold" +
+            "font-bold line-clamp-1 " +
             (!active
               ? " text-notActiveLight line-through hover:text-notActiveLight dark:text-notActiveDark"
               : "")
           }
           title={todo}
         >
-          {todo.length > 25 ? todo.slice(0, 17) + "..." : todo}
+          {todo}
         </p>
       </div>
       <div className="flex items-center gap-x-4">
-        <span>{handleDate(createdAt)}</span>
+        <span className="min-w-max">{handleDate(createdAt)}</span>
         <button
           className="h-4 w-3 select-none"
           onClick={() => (id ? handleDel(id) : null)}
